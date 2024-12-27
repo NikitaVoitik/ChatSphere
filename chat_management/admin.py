@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Model, ApiKey, Chat
+from .models import ModelInterface, ApiKey, Chat
 
-@admin.register(Model)
+@admin.register(ModelInterface)
 class ModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'url')
 
