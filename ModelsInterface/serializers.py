@@ -3,13 +3,19 @@ from django.contrib.auth.models import User
 from .models import Chat, ApiKey, ModelInterface
 
 class ApiKeySerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
-    model = serializers.StringRelatedField()
-    api_key = serializers.CharField()
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    name = serializers.CharField(allow_blank=True)
+    model = serializers.PrimaryKeyRelatedField(queryset=ModelInterface.objects.all())
+    api_key = serializers.CharField(write_only=True)
 
     class Meta:
         model = ApiKey
-        fields = ('id', 'user', 'model', 'api_key')
+        fields = ('id', 'name', 'user', 'model', 'api_key')
+
+    def validate(self, attrs):
+        # Add the current user to the validated data
+        attrs['user'] = self.context['request'].user
+        return attrs
 
     def create(self, validated_data):
         return ApiKey.objects.create(**validated_data)

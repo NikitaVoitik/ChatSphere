@@ -12,8 +12,14 @@ class ModelInterface(TimeStampedModel):
 
 class ApiKey(TimeStampedModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, blank=True)
     api_key = models.CharField(max_length=1000)
     model = models.ForeignKey(ModelInterface, on_delete=models.PROTECT)
+
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = f"API Key {ApiKey.objects.filter(user=self.user).count() + 1}"
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.user.username + ' - ' + self.model.name
