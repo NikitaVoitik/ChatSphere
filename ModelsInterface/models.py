@@ -4,8 +4,12 @@ from common.models import TimeStampedModel
 
 class ModelInterface(TimeStampedModel):
     name = models.CharField(max_length=100)
+    request_name = models.CharField(max_length=100)
     description = models.TextField()
     url = models.URLField()
+    text_completions = models.BooleanField(null=False, default=False)
+    image_generation = models.BooleanField(null=False, default=False)
+    vision = models.BooleanField(null=False, default=False)
 
     def __str__(self):
         return self.name + ' - ' + self.url + ' - ' + self.description
