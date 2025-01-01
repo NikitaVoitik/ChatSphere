@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('api_key', models.CharField(max_length=1000)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('model', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='ModelsInterface.model')),
+                ('model', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='apiMeta.model')),
             ],
             options={
                 'abstract': False,
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('chat', models.JSONField()),
-                ('api_key', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ModelsInterface.apikey')),
+                ('api_key', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apiMeta.apikey')),
             ],
             options={
                 'abstract': False,

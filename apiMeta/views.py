@@ -8,7 +8,7 @@ from rest_framework import exceptions
 
 from utils.exceptions import NO_PK_PROVIDED
 from users.permissions import IsOwnerOrPostOnly, IsOwner
-from .models import ApiKey, ModelInterface
+from .models import ApiKey, ModelMeta
 from .serializers import ApiKeySerializer, ModelInterfaceSerializer
 
 
@@ -53,12 +53,12 @@ class ModelInterfaceView(APIView):
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk', None)
         if pk is None:
-            model_interfaces = ModelInterface.objects.all()
+            model_interfaces = ModelMeta.objects.all()
             serializer = ModelInterfaceSerializer(model_interfaces, many=True)
 
             return Response(serializer.data, status=200)
         else:
-            model_interface = get_object_or_404(ModelInterface, pk=pk)
+            model_interface = get_object_or_404(ModelMeta, pk=pk)
             serializer = ModelInterfaceSerializer(model_interface)
 
             return Response(serializer.data, status=200)

@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Chat, ApiKey, ModelInterface
+from .models import ApiKey, ModelMeta
 
 class ApiKeySerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     name = serializers.CharField(allow_blank=True)
-    model = serializers.PrimaryKeyRelatedField(queryset=ModelInterface.objects.all())
+    model = serializers.PrimaryKeyRelatedField(queryset=ModelMeta.objects.all())
     api_key = serializers.CharField(write_only=True)
 
     class Meta:
@@ -29,5 +29,5 @@ class ModelInterfaceSerializer(serializers.ModelSerializer):
     description = serializers.CharField()
 
     class Meta:
-        model = ModelInterface
+        model = ModelMeta
         fields = ('id', 'name', 'description')

@@ -1,49 +1,25 @@
 {
   "messages": [
-    {"comment": "Developer prompt"},
     {
       "id": 0,
       "role": "developer",
-      "content": {
-        "type": "text",
-        "text": "You're a helpful assistant"
-      },
-      "timestamp": "2025-01-01T20:06:51Z"
-    },
-
-    {"comment": "Chat completions"},
-    {
-      "id": 1,
-      "role": "user",
-      "content": {
-        "type": "text",
-        "text": "Hello, how can I help you today?"
-      },
-      "timestamp": "2025-01-01T20:06:51Z"
-    },
-    {
-      "id": 2,
-      "role": "assistant",
-      "content": {
-        "type": "text",
-        "text": "I can help you!"
-      },
+      "content": [
+        {
+          "type": "text",
+          "text": "You're a helpful assistant"
+        }
+      ],
       "timestamp": "2025-01-01T20:06:51Z"
     },
 
 
-    {"comment": "Image load"},
     {
       "id": 1,
       "role": "user",
       "content": [
         {
           "type": "text",
-          "content": "What's on the picture?"
-        },
-        {
-          "type": "image_url",
-          "image_url": "https://www.example.com/image.jpg"
+          "text": "Hello, how can I help you today?"
         }
       ],
       "timestamp": "2025-01-01T20:06:51Z"
@@ -51,43 +27,83 @@
     {
       "id": 2,
       "role": "assistant",
-      "content": {
-        "type": "text",
-        "text": "It's a cat!"
-      },
+      "content": [
+        {
+          "type": "text",
+          "text": "I can help you!"
+        }
+      ],
       "timestamp": "2025-01-01T20:06:51Z"
     },
 
 
-    {"comment": "Image generation"},
     {
       "id": 1,
-      "role" : "user",
-      "content": {
-        "type": "image_generate",
-        "image_generate": "Make a picture of a cat"
-      },
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "What's on the picture?"
+        }
+      ],
       "timestamp": "2025-01-01T20:06:51Z"
     },
     {
       "id": 2,
-      "role" : "assistant",
-      "content": {
-        "type": "image_url",
-        "image_url": "https://www.chatgpt.com/image.jpg"
-      },
+      "role": "user",
+      "content": [
+        {
+          "type": "image_url",
+          "image_url": "https://www.example.com/image.jpg"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "It's a cat!"
+        }
+      ],
       "timestamp": "2025-01-01T20:06:51Z"
     },
 
 
-    {"comment": "Error message"},
+    {
+      "id": 1,
+      "role": "user",
+      "content": [
+        {
+          "type": "image_generate",
+          "text": "Make a picture of a cat"
+        }
+      ],
+      "timestamp": "2025-01-01T20:06:51Z"
+    },
+    {
+      "id": 2,
+      "role": "assistant",
+      "content": [
+        {
+          "type": "image_url",
+          "image_url": "https://www.chatgpt.com/image.jpg"
+        }
+      ],
+      "timestamp": "2025-01-01T20:06:51Z"
+    },
+
+
     {
       "id": 2,
       "role": "system",
-      "content": {
-        "type": "text",
-        "error": "Connection error"
-      }
+      "content": [
+        {
+          "type": "text",
+          "error": "Connection error"
+        }
+      ]
     }
   ]
 }

@@ -7,7 +7,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ModelsInterface', '0003_apikey_name'),
+        ('apiMeta', '0003_apikey_name'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 

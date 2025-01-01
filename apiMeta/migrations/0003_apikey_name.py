@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ModelsInterface', '0002_rename_model_modelinterface'),
+        ('apiMeta', '0002_rename_model_modelinterface'),
     ]
 
     operations = [

@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ModelsInterface', '0004_alter_apikey_unique_together'),
+        ('apiMeta', '0004_alter_apikey_unique_together'),
     ]
 
     operations = [
