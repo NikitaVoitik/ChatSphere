@@ -13,8 +13,11 @@ class ApiKeySerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'user', 'model', 'api_key')
 
     def validate(self, attrs):
-        # Add the current user to the validated data
         attrs['user'] = self.context['request'].user
+        user = attrs.get('user')
+        model = attrs.get('model')
+        if ApiKey.objects.filter(user=user, model=model).exists():
+            raise serializers.ValidationError("A key for this model already exists for this user")
         return attrs
 
     def create(self, validated_data):

@@ -24,6 +24,9 @@ class ApiKey(TimeStampedModel):
     def __str__(self):
         return self.user.username + ' - ' + self.model.name
 
+    class Meta:
+        unique_together = ['user', 'model']
+
 class Chat(TimeStampedModel):
     api_key = models.ForeignKey(ApiKey, on_delete=models.CASCADE)
     chat = models.JSONField()
