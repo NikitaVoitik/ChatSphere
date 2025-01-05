@@ -10,7 +10,7 @@ from users.permissions import IsOwner
 from utils.default_chat_data import generate_default_chat_data
 from utils.exceptions import NO_PK_PROVIDED
 from .models import Chat
-from .serializers import ChatSerializer, MessageSerializer, ChatMessagesSerializer
+from .serializers import ChatSerializer, ChatMessagesSerializer
 
 
 class ChatCreateView(APIView):
@@ -27,7 +27,6 @@ class ChatCreateView(APIView):
 
         return Response(chat.data, status=201)
 
-
 class ChatView(APIView):
     permission_classes = (IsAuthenticated, IsOwner)
 
@@ -38,6 +37,7 @@ class ChatView(APIView):
 
         chat = get_object_or_404(Chat, pk=pk)
         self.check_object_permissions(request, chat)
+
         serializer = ChatSerializer(chat)
 
         return Response(serializer.data, status=200)

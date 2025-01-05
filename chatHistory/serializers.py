@@ -15,8 +15,9 @@ class ContentSerializer(serializers.Serializer):
         if attrs['type'] == 'text' and not attrs.get('text'):
             raise serializers.ValidationError({"type": "Text content is required for type 'text'"})
         if attrs['type'] == 'image' and not attrs.get('image_url'):
-            raise serializers.ValidationError({"type" : "Image URL is required for type 'image'"})
+            raise serializers.ValidationError({"type": "Image URL is required for type 'image'"})
         return attrs
+
 
 class MessageSerializer(serializers.Serializer):
     id = serializers.CharField(max_length=100)
@@ -30,20 +31,22 @@ class MessageSerializer(serializers.Serializer):
 
         return data
 
+
 class ChatSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     name = serializers.CharField(allow_blank=True, required=False)
-    messages = MessageSerializer(many=True)
+    messages = MessageSerializer(many=True, required=False)
 
     class Meta:
         model = Chat
-        fields = ('user', 'name', 'messages')
+        fields = ('id', 'user', 'name', 'messages')
 
     def create(self, validated_data):
         if self.context.get('request'):
             validated_data['user'] = self.context.get('request').user
 
         return Chat.objects.create(**validated_data)
+
 
 class ChatMessagesSerializer(serializers.ModelSerializer):
     messages = MessageSerializer(many=True)
@@ -71,5 +74,3 @@ class ChatMessagesSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-
-

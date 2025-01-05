@@ -6,14 +6,14 @@ def generate_default_chat_data():
         "type": "text",
         "text": "You're a helpful assistant"
     }]
-    message = [{
+    messages = [{
         "id": cuid.cuid(),
         "role": "developer",
         "content": content,
         "timestamp": str(timezone.now())
     }]
     chat = {
-        "messages": message,
+        "messages": messages,
         "name": "New Chat"
     }
     return chat
