@@ -72,30 +72,6 @@
 
 
     {
-      "id": 1,
-      "role": "user",
-      "content": [
-        {
-          "type": "image_generate",
-          "text": "Make a picture of a cat"
-        }
-      ],
-      "timestamp": "2025-01-01T20:06:51Z"
-    },
-    {
-      "id": 2,
-      "role": "assistant",
-      "content": [
-        {
-          "type": "image_url",
-          "image_url": "https://www.chatgpt.com/image.jpg"
-        }
-      ],
-      "timestamp": "2025-01-01T20:06:51Z"
-    },
-
-
-    {
       "id": 2,
       "role": "system",
       "content": [
